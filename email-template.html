@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>교육 신청 완료 - AI API Key 안내</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f3f4f6;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', sans-serif;
+    color: #111827;
+    line-height: 1.6;
+  }
+
+  .email-wrapper {
+    max-width: 600px;
+    margin: 32px auto;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  }
+
+  /* Header */
+  .email-header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1a56db 100%);
+    color: #ffffff;
+    padding: 40px 32px;
+    text-align: center;
+  }
+
+  .email-header .logo {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    margin-bottom: 16px;
+  }
+
+  .email-header h1 {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0 0 8px;
+    line-height: 1.3;
+  }
+
+  .email-header p {
+    font-size: 14px;
+    opacity: 0.8;
+    margin: 0;
+  }
+
+  /* Body */
+  .email-body {
+    padding: 36px 32px;
+  }
+
+  .greeting {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .intro {
+    font-size: 14px;
+    color: #374151;
+    margin-bottom: 28px;
+    line-height: 1.7;
+  }
+
+  /* API Key Box */
+  .api-section {
+    background: #f0f5ff;
+    border: 2px solid #dbeafe;
+    border-radius: 14px;
+    padding: 28px 24px;
+    margin-bottom: 28px;
+  }
+
+  .api-section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a56db;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .api-key-box {
+    background: #0f172a;
+    color: #60a5fa;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 14px 18px;
+    border-radius: 10px;
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    word-break: break-all;
+  }
+
+  .api-key-note {
+    font-size: 12px;
+    color: #6b7280;
+    text-align: center;
+  }
+
+  /* Steps */
+  .steps-section {
+    margin-bottom: 28px;
+  }
+
+  .steps-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+  }
+
+  .step-number {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: #1a56db;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .step-content {
+    flex: 1;
+  }
+
+  .step-content strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 2px;
+  }
+
+  .step-content p {
+    font-size: 13px;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* CTA Button */
+  .cta-wrapper {
+    text-align: center;
+    margin: 32px 0;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #1a56db, #2563eb);
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 16px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(26,86,219,0.3);
+  }
+
+  /* Models Info */
+  .models-section {
+    background: #fafafa;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 28px;
+  }
+
+  .models-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #374151;
+  }
+
+  .model-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 13px;
+  }
+
+  .model-row:last-child { border-bottom: none; }
+
+  .model-name {
+    font-weight: 600;
+    color: #111827;
+  }
+
+  .model-desc {
+    color: #6b7280;
+    font-size: 12px;
+  }
+
+  /* Warning */
+  .warning-box {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+  }
+
+  .warning-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #92400e;
+    margin-bottom: 4px;
+  }
+
+  .warning-text {
+    font-size: 12px;
+    color: #a16207;
+    line-height: 1.6;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: #e5e7eb;
+    margin: 28px 0;
+  }
+
+  /* Help */
+  .help-text {
+    font-size: 13px;
+    color: #6b7280;
+    text-align: center;
+    line-height: 1.7;
+  }
+
+  .help-text a {
+    color: #1a56db;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* Footer */
+  .email-footer {
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    padding: 24px 32px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-size: 14px;
+    font-weight: 700;
+    color: #374151;
+    margin-bottom: 6px;
+  }
+
+  .footer-info {
+    font-size: 12px;
+    color: #9ca3af;
+    line-height: 1.6;
+  }
+
+  .footer-info a {
+    color: #6b7280;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="email-wrapper">
+
+  <!-- Header -->
+  <div class="email-header">
+    <div class="logo">WEBIGAI RESEARCH INSTITUTE</div>
+    <h1>교육 신청이 완료되었습니다!</h1>
+    <p>온톨로지 기반 바이브 코딩 마스터클래스</p>
+  </div>
+
+  <!-- Body -->
+  <div class="email-body">
+
+    <p class="greeting">{{이름}}님, 환영합니다!</p>
+    <p class="intro">
+      온톨로지 기반 바이브 코딩 마스터클래스에 신청해 주셔서 감사합니다.<br>
+      교육 지원자 특전으로 <strong>Claude, Gemini, Grok 3대 AI를 직접 체험</strong>할 수 있는
+      API Key를 아래에 안내드립니다.
+    </p>
+
+    <!-- API Key -->
+    <div class="api-section">
+      <div class="api-section-title">🔑 나의 AI API Key</div>
+      <div class="api-key-box">sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+      <p class="api-key-note">※ 본 Key는 {{이름}}님 전용이며, 타인과 공유하지 마세요.</p>
+    </div>
+
+    <!-- 사용 방법 Steps -->
+    <div class="steps-section">
+      <div class="steps-title">사용 방법 (3단계)</div>
+
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <strong>OpenRouter 접속</strong>
+          <p>아래 버튼을 클릭하여 OpenRouter 사이트에 접속하세요.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <strong>API Key 입력</strong>
+          <p>좌측 상단 메뉴 > Settings > API Keys에서 위 Key를 등록하세요.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <strong>AI 모델 선택 후 대화 시작</strong>
+          <p>Direct 모드에서 Claude, Gemini, Grok 등 원하는 AI를 골라 바로 사용하세요.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-wrapper">
+      <a href="https://openrouter.ai/chat" class="cta-button">OpenRouter 바로가기 →</a>
+    </div>
+
+    <!-- 사용 가능 모델 -->
+    <div class="models-section">
+      <div class="models-title">사용 가능한 AI 모델</div>
+      <div class="model-row">
+        <span class="model-name">🟣 Claude Sonnet 4.6</span>
+        <span class="model-desc">Anthropic · 코드 & 분석에 강점</span>
+      </div>
+      <div class="model-row">
+        <span class="model-name">🔵 Gemini 3 Flash</span>
+        <span class="model-desc">Google · 빠른 응답 & 멀티모달</span>
+      </div>
+      <div class="model-row">
+        <span class="model-name">⚡ Grok</span>
+        <span class="model-desc">xAI · 실시간 정보 & 창의적 답변</span>
+      </div>
+    </div>
+
+    <!-- 주의사항 -->
+    <div class="warning-box">
+      <div class="warning-title">⚠️ 이용 안내</div>
+      <div class="warning-text">
+        • API Key 체험 기간: 교육일 기준 1~3일간 (상세 일정 별도 안내)<br>
+        • 체험 크레딧 소진 시 자동으로 사용이 중단됩니다.<br>
+        • API Key는 본인만 사용 가능하며, 외부 공유 시 비활성화됩니다.
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="help-text">
+      사용 중 문의사항이 있으시면<br>
+      <a href="mailto:ebmeng1@gmail.com">ebmeng1@gmail.com</a> 또는
+      <a href="tel:010-4174-0518">010-4174-0518</a>로 연락 주세요.
+    </p>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="email-footer">
+    <div class="footer-logo">WeBigAI Research Institute</div>
+    <div class="footer-info">
+      © 2026 WeBigAI Research Institute. All rights reserved.<br>
+      본 메일은 교육 신청자에게 발송되는 안내 메일입니다.
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
