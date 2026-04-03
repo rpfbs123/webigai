@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>교육 신청 완료 - Anthropic API Key 안내</title>
+<style>
+  body { margin:0; padding:0; background:#F1F5FE; font-family:-apple-system,BlinkMacSystemFont,'Malgun Gothic','Apple SD Gothic Neo',sans-serif; color:#0F172A; line-height:1.6; }
+  .wrapper { max-width:600px; margin:36px auto; background:#FFFFFF; border-radius:20px; overflow:hidden; border:1px solid #E4EAF6; box-shadow:0 8px 40px rgba(26,86,219,0.09); }
+
+  /* HEADER */
+  .header { background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 55%,#1A56DB 100%); padding:44px 40px 36px; text-align:center; position:relative; overflow:hidden; }
+  .header::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 20% 50%,rgba(96,165,250,0.15) 0%,transparent 60%); pointer-events:none; }
+  .h-logo { position:relative; z-index:1; font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:18px; }
+  .h-logo span { color:#93C5FD; }
+  .header h1 { position:relative; z-index:1; font-size:22px; font-weight:800; color:white; margin:0 0 8px; line-height:1.35; letter-spacing:-0.4px; }
+  .h-sub { position:relative; z-index:1; font-size:13px; color:rgba(255,255,255,0.6); margin:0; }
+
+  /* BODY */
+  .body { padding:40px; }
+  .greeting { font-size:16px; font-weight:700; margin-bottom:12px; }
+  .greeting span { color:#1A56DB; }
+  .intro { font-size:14px; color:#4B5775; margin-bottom:32px; line-height:1.8; }
+
+  /* API KEY BOX */
+  .api-section { background:#EFF4FF; border:1.5px solid #C7D5F8; border-radius:16px; padding:28px 24px; margin-bottom:32px; }
+  .eyebrow { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#1A56DB; margin-bottom:16px; opacity:0.85; }
+  .api-key-box { background:#0F172A; color:#93C5FD; font-family:'Courier New','Consolas',monospace; font-size:14px; font-weight:700; padding:16px 20px; border-radius:10px; text-align:center; letter-spacing:1.5px; margin-bottom:10px; word-break:break-all; }
+  .api-key-note { font-size:11.5px; color:#94A0BE; text-align:center; line-height:1.6; }
+
+  /* STEPS */
+  .steps-label { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#94A0BE; margin-bottom:20px; }
+  .step { display:flex; gap:16px; margin-bottom:20px; align-items:flex-start; }
+  .step-num { flex-shrink:0; width:30px; height:30px; background:#EFF4FF; border:1.5px solid #C7D5F8; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; color:#1A56DB; }
+  .step strong { display:block; font-size:14px; font-weight:700; color:#0F172A; margin-bottom:3px; }
+  .step p { font-size:13px; color:#4B5775; margin:0; line-height:1.65; }
+
+  /* CTA */
+  .cta-wrap { text-align:center; margin:32px 0; }
+  .cta-btn { display:inline-block; background:#1A56DB; color:white !important; text-decoration:none; font-size:14px; font-weight:800; padding:14px 40px; border-radius:999px; box-shadow:0 4px 16px rgba(26,86,219,0.25); letter-spacing:0.2px; }
+
+  /* MODELS */
+  .models-section { background:#F8FAFF; border:1px solid #E4EAF6; border-radius:14px; padding:22px 24px; margin-bottom:28px; }
+  .models-label { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#94A0BE; margin-bottom:18px; }
+  .model-row { display:flex; align-items:flex-start; gap:14px; padding:14px 0; border-bottom:1px solid #E4EAF6; }
+  .model-row:last-child { border-bottom:none; }
+  .model-icon { width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:14px; font-weight:800; }
+  .model-name { font-size:14px; font-weight:700; color:#0F172A; margin-bottom:4px; }
+  .model-desc { font-size:12.5px; color:#4B5775; line-height:1.55; }
+
+  /* WARNING */
+  .warning-box { background:#FFFBEB; border:1px solid #FDE68A; border-radius:12px; padding:18px 20px; margin-bottom:28px; }
+  .warning-label { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#92400E; margin-bottom:10px; }
+  .warning-text { font-size:12.5px; color:#78350F; line-height:1.8; }
+
+  .divider { height:1px; background:#E4EAF6; margin:28px 0; }
+  .help-text { font-size:13px; color:#94A0BE; text-align:center; line-height:1.8; }
+  .help-text a { color:#4B5775; text-decoration:none; font-weight:600; }
+
+  /* FOOTER */
+  .footer { background:#F8FAFF; border-top:1px solid #E4EAF6; padding:24px 40px; text-align:center; }
+  .f-logo { font-size:13px; font-weight:800; color:#4B5775; margin-bottom:6px; }
+  .f-logo span { color:#1A56DB; }
+  .f-info { font-size:11.5px; color:#94A0BE; line-height:1.7; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="h-logo">We<span>Big</span>AI Research Institute</div>
+    <h1>교육 신청이 완료되었습니다</h1>
+    <p class="h-sub">온톨로지 기반 바이브 코딩 마스터클래스</p>
+  </div>
+
+  <div class="body">
+
+    <p class="greeting"><span>{{이름}}</span>님, 환영합니다!</p>
+    <p class="intro">
+      온톨로지 기반 바이브 코딩 마스터클래스에 신청해 주셔서 감사합니다.<br>
+      교육 지원자 특전으로 <strong>Anthropic 공식 API Key</strong>를 발급해 드립니다.<br>
+      WeBigAI 플랫폼에 접속하셔서 Claude를 별도 가입 없이 바로 체험해 보세요.
+    </p>
+
+    <div class="api-section">
+      <div class="eyebrow">Anthropic API Key</div>
+      <div class="api-key-box">sk-ant-xxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+      <p class="api-key-note">본 Key는 {{이름}}님 전용입니다. 타인과 공유하거나 외부에 노출하지 마세요.</p>
+    </div>
+
+    <div class="steps-label">사용 방법 — 2단계</div>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <strong>WeBigAI 플랫폼 접속</strong>
+        <p>아래 버튼을 클릭하여 WeBigAI 체험 플랫폼에 접속하세요.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <strong>API Key 입력 후 바로 사용</strong>
+        <p>플랫폼 내 설정에서 위 API Key를 입력하면 Claude를 즉시 사용할 수 있습니다.<br>별도 회원가입이나 구독 없이 바로 체험이 가능합니다.</p>
+      </div>
+    </div>
+
+    <div class="cta-wrap">
+      <a href="https://webigai.github.io/chat/" class="cta-btn">WeBigAI 플랫폼 바로가기</a>
+    </div>
+
+    <div class="models-section">
+      <div class="models-label">체험 가능한 Claude 모델</div>
+
+      <div class="model-row">
+        <div class="model-icon" style="background:#FEF3C7; color:#D97706;">S</div>
+        <div>
+          <div class="model-name">Claude Sonnet 4.5</div>
+          <div class="model-desc">빠른 응답과 높은 정확성. 코드 작성, 데이터 분석, 일반 질의응답에 최적화된 모델입니다.</div>
+        </div>
+      </div>
+
+      <div class="model-row">
+        <div class="model-icon" style="background:#EDE9FE; color:#7C3AED;">O</div>
+        <div>
+          <div class="model-name">Claude Opus 4</div>
+          <div class="model-desc">Anthropic 최고 성능 모델. 복잡한 추론, 심층 분석, 긴 문서 작성 등 고난이도 작업에 적합합니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="warning-box">
+      <div class="warning-label">이용 안내</div>
+      <div class="warning-text">
+        · API Key 체험 기간: 교육일 기준 1~3일간 (상세 일정 별도 안내)<br>
+        · 제공된 크레딧 소진 시 자동으로 사용이 중단됩니다.<br>
+        · API Key는 본인만 사용 가능하며, 외부 공유 시 즉시 비활성화됩니다.
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="help-text">
+      사용 중 문의사항이 있으시면<br>
+      <a href="mailto:ebmeng1@gmail.com">ebmeng1@gmail.com</a> 또는
+      <a href="tel:010-4174-0518">010-4174-0518</a>으로 연락 주세요.
+    </p>
+
+  </div>
+
+  <div class="footer">
+    <div class="f-logo">We<span>Big</span>AI Research Institute</div>
+    <div class="f-info">
+      © 2026 WeBigAI Research Institute. All rights reserved.<br>
+      본 메일은 교육 신청자에게 발송되는 안내 메일입니다.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
